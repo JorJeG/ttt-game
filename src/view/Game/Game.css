@@ -1,0 +1,16 @@
+.game {
+	/* user-select: none; */
+  position: absolute;
+  top: -140px;
+  left: calc(50% - 50px);
+  height: 140px;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  transition: top 2s;
+}
+
+.game.show {
+	top: 0;
+}

@@ -1,0 +1,26 @@
+.chat {
+	position: absolute;
+	top: 140px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+
+.chat__messages {
+	max-height: 50%;
+	overflow-y: auto;
+	padding: 20px;
+	padding-bottom: 10px;
+}
+
+.chat__input-message {
+	font-size: 100%;
+	width: 100%;
+	height: 60px;
+	border: 10px solid #000;
+  outline: none;
+  padding-left: 10px;
+}
