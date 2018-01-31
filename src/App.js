@@ -110,10 +110,16 @@ class App extends Component {
   handleRestart() {
     const { messages } = this.state;
     const removedMessage = deleteMessage(messages);
+    // 
     this.setState({
       messages: removedMessage,
       game: true,
       restart: true,
+    }, () => {
+      // Чтобы не сбрасывало
+      this.setState({
+        restart: false
+      });
     });
   }
   // При дисконекте
