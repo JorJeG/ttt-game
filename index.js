@@ -26,6 +26,7 @@ if (process.env.NODE_ENV === 'production') {
 io.on('connection', function(socket) {
   // Регистрация пользователя по логину
   socket.on('add user', function(data) {
+    const listUsers = users.addLogin(socket.id, data.login);
     io.to(data.room).emit('user joined', {
       login: data.login
     });
@@ -45,6 +46,10 @@ io.on('connection', function(socket) {
       socket.join(data.room);
     }
   });
+  // Показывает второму игроку его противника
+  socket.on('show opp', function(data) {
+    socket.emit('show opp', { opponent: users.getUsersList(data.room)[0]});
+  })
   // Отправление сообщения в чат
   socket.on('new message', function (data) {
     io.to(data.room).emit('new message', {

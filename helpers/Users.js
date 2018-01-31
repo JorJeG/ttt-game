@@ -24,8 +24,14 @@ class Users {
 
 	getUsersList(room) {
 		const users = this.users.filter((user) => user.room === room);
-		const namesArray = users.map((user) => user.id);
+		const namesArray = users.map((user) => user.login);
 		return namesArray;
+	}
+	
+	addLogin(id, login) {
+		const user = this.getUser(id);
+		user.login = login;
+		return this.users;
 	}
 }
 

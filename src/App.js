@@ -31,6 +31,7 @@ class App extends Component {
     this.handleRestart = this.handleRestart.bind(this);
     this.handleTyping = this.handleTyping.bind(this);
     this.handleStopTyping = this.handleStopTyping.bind(this);
+    this.showOpponent = this.showOpponent.bind(this);
   }
   componentDidMount() {
     // Socket events
@@ -43,6 +44,7 @@ class App extends Component {
     socket.on('handleRestart', this.handleRestart);
     socket.on('typing', this.handleTyping);
     socket.on('stop typing', this.handleStopTyping);
+    socket.on('show opp', this.showOpponent);
   }
   // Обработчик при соединении к игре или к комнате по ссылке
   connectSocket(data) {
@@ -74,6 +76,17 @@ class App extends Component {
       messages: newArray,
       opponent: data.login,
       game: true
+    }, () => {
+      // Запрашиваем имя оппонента для второго игрока
+      if(!this.state.first) {
+        socket.emit('show opp', {room: this.state.room});
+      }
+    });
+  }
+  // Для второго игрока записывает оппонента
+  showOpponent(data) {
+    this.setState({
+      opponent: data.opponent
     });
   }
   // Показывает победителя
@@ -110,7 +123,7 @@ class App extends Component {
   handleRestart() {
     const { messages } = this.state;
     const removedMessage = deleteMessage(messages);
-    // 
+    // Сначала сбрасываем
     this.setState({
       messages: removedMessage,
       game: true,
