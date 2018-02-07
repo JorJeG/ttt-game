@@ -1,9 +1,9 @@
 .game {
 	/* user-select: none; */
   position: absolute;
-  top: -140px;
-  left: calc(50% - 50px);
-  height: 140px;
+  width: 100%;
+  top: -380px;
+  height: 380px;
   display: flex;
   flex-grow: 1;
   justify-content: center;
@@ -13,4 +13,5 @@
 
 .game.show {
 	top: 0;
+  background: #222;
 }

@@ -3,3 +3,10 @@
   content: "";
   display: table;
 }
+.game-container {
+  margin: 10px auto;
+  width: 360px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0px;
+}
